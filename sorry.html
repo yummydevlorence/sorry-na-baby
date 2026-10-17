@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sorry baby</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&family=Karla:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#fde8f0; --ink:#4a1f3d; --soft:#8a5878; --accent:#d6336c; --accent-ink:#fff; --line:#f1b9d0; --card:#fff6fa;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#25101f;--ink:#ffe9f3;--soft:#d3a6bf;--accent:#ff7aa8;--accent-ink:#2a0f1d;--line:#5a2c47;--card:#33182a;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#25101f;--ink:#ffe9f3;--soft:#d3a6bf;--accent:#ff7aa8;--accent-ink:#2a0f1d;--line:#5a2c47;--card:#33182a;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Karla,system-ui,sans-serif;font-size:18px;overflow:hidden}
+.bg{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.bg i{will-change:transform;position:absolute;bottom:-2rem;font-style:normal;opacity:.55;animation:rise linear infinite}
+@keyframes rise{to{transform:translate3d(0,-115vh,0) rotate(25deg)}}
+main{position:relative;min-height:100%;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:1.2rem}
+.card{width:100%;max-width:26rem;padding:clamp(1.25rem,5vw,2rem) 1.4rem 1.6rem;text-align:center;position:relative}
+#face{position:relative;z-index:3;font-size:clamp(4.5rem,18vw,5.5rem);line-height:1;display:inline-block;cursor:pointer;user-select:none;animation:wobble 2.4s ease-in-out infinite}
+@keyframes wobble{50%{transform:rotate(-6deg) translateY(-4px)}}
+#face.pop{animation:pop .4s ease}
+@keyframes pop{50%{transform:scale(1.35)}}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(2rem,8vw,2.5rem);line-height:1.1;margin:.8rem 0 .4rem}
+.sub{font-family:Fraunces,Georgia,serif;font-style:italic;font-size:clamp(1.1rem,4.5vw,1.25rem);color:var(--soft);margin:0}
+.stage{position:relative;height:clamp(8rem,32vw,9.5rem);margin-top:1.4rem}
+button{font:inherit;font-weight:500;border:0;border-radius:999px;cursor:pointer}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.choice{position:absolute;left:0;top:0;width:clamp(6.5rem,30vw,7.4rem);height:clamp(3rem,13vw,3.2rem);font-size:clamp(1rem,4.5vw,1.15rem);padding:0;will-change:transform;transition:transform .9s cubic-bezier(.22,1.1,.36,1)}
+#oo{z-index:2;background:var(--accent);color:var(--accent-ink);transform-origin:center}
+#ayoko{position:fixed;z-index:1;background:var(--accent);color:var(--accent-ink);border:0}
+#msg{position:fixed;left:50%;bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:8;margin:0;background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:999px;padding:.55rem 1.2rem;font-size:1.05rem;white-space:nowrap;max-width:92vw;pointer-events:none}
+#msg:empty{display:none}
+#yay{display:none}
+.done #ask{display:none}
+.done #yay{display:block;animation:bubblein .6s cubic-bezier(.34,1.56,.64,1)}
+#yay p{font-family:Fraunces,Georgia,serif;font-size:1.2rem;margin:.6rem 0 0}
+.heart{will-change:transform;position:fixed;top:-2rem;font-size:1.6rem;pointer-events:none;animation:fall linear forwards;z-index:5}
+@keyframes fall{to{transform:translate3d(0,112vh,0) rotate(40deg);opacity:.3}}
+.tap{position:fixed;pointer-events:none;font-size:1.4rem;animation:up 1s ease-out forwards;z-index:6}
+@keyframes up{to{transform:translate3d(0,-70px,0);opacity:0}}
+#plead{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:1.4rem;background:rgba(40,10,30,.45);z-index:10}
+#plead.show{display:flex;animation:fadein .25s ease}
+@keyframes fadein{from{opacity:0}}
+@keyframes bubblein{from{transform:scale(.6);opacity:0}}
+#plead .bubble{background:var(--card);border:2px solid var(--line);border-radius:2rem;padding:1.8rem 1.4rem;max-width:22rem;text-align:center;animation:bubblein .45s cubic-bezier(.34,1.56,.64,1)}
+#plead .big{font-size:3.4rem;line-height:1}
+#plead p{font-family:Fraunces,Georgia,serif;font-size:1.5rem;font-weight:600;line-height:1.25;margin:.7rem 0 1.2rem}
+#plead button{background:var(--accent);color:var(--accent-ink);padding:.75rem 1.8rem}
+@media (prefers-reduced-motion:reduce){.bg,.heart,.tap{display:none}#face{animation:none}.choice{transition:none}}
+@media (min-width:768px){
+  main{padding:2rem}
+  .card{max-width:34rem;padding:2.5rem 2rem 2rem}
+  #face{font-size:6.5rem}
+  h1{font-size:3rem}
+  .sub{font-size:1.5rem}
+  .stage{height:11rem;margin-top:1.8rem}
+  .choice{width:8.5rem;height:3.6rem;font-size:1.3rem}
+}
+</style>
+</head>
+<body>
+<div class="bg" id="bg" aria-hidden="true"></div>
+<main>
+  <div class="card" id="card">
+    <div id="face" role="img" aria-label="Sad cat. Tap me!">😿</div>
+    <div id="ask">
+      <h1>Sorry na, baby<span id="nm"></span></h1>
+      <p class="sub">Bati na tayo baby plss</p>
+      <div class="stage" id="stage">
+        <button class="choice" id="oo">Oo 😻</button>
+        <button class="choice" id="ayoko">Ayoko</button>
+      </div>
+      <p id="msg"></p>
+    </div>
+    <div id="yay">
+      <h1>Yeheyyy! bati na tayo!!</h1>
+      <p>Ilveyousososoosmuchhhh Baby</p>
+    </div>
+  </div>
+</main>
+<div id="plead" role="dialog" aria-modal="true" aria-labelledby="pleadtxt">
+  <div class="bubble">
+    <div class="big">😿</div>
+    <p id="pleadtxt"></p>
+    <button id="pleadok">Sige na nga 😽</button>
+  </div>
+</div>
+<script>
+(function(){
+  try{var n=new URLSearchParams(location.search).get('to');if(n)document.getElementById('nm').textContent=', '+n;}catch(e){}
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var $=function(i){return document.getElementById(i)};
+  var face=$('face'),oo=$('oo'),ay=$('ayoko'),stage=$('stage'),msg=$('msg'),card=$('card');
+
+  // floating background paws, hearts and fish
+  if(!reduce){
+    var bg=$('bg'),em=['🐾','💗','🐟','🐾','💕','🧶','🐱'];
+    for(var i=0;i<14;i++){
+      var e=document.createElement('i');
+      e.textContent=em[i%em.length];
+      e.style.left=(Math.random()*96)+'%';
+      e.style.fontSize=(1+Math.random()*1.4)+'rem';
+      e.style.animationDuration=(9+Math.random()*10)+'s';
+      e.style.animationDelay=(-Math.random()*14)+'s';
+      bg.appendChild(e);
+    }
+  }
+
+  // tap the cat for paw prints
+  face.addEventListener('click',function(){
+    face.classList.remove('pop');void face.offsetWidth;face.classList.add('pop');
+    if(reduce)return;
+    var t=document.createElement('div');t.className='tap';t.textContent='🐾';
+    var r=face.getBoundingClientRect();
+    t.style.left=(r.left+r.width/2+(Math.random()-.5)*60)+'px';
+    t.style.top=(r.top+10)+'px';
+    document.body.appendChild(t);setTimeout(function(){t.remove()},1000);
+  });
+
+  // layout: Oo and Ayoko start side by side, same size
+  var W,H,bw,bh,ooX,ooY,tries=0,lastRun=0,curS=1,sMax=1,full=false;
+  function setOo(s){oo.style.transform='translate3d('+ooX+'px,'+ooY+'px,0) scale('+s+')';}
+  function setAy(x,y){ay.style.transform='translate3d('+x+'px,'+y+'px,0)';}
+  function init(){
+    W=stage.clientWidth;H=stage.clientHeight;bw=oo.offsetWidth;bh=oo.offsetHeight;
+    ooX=W/2-bw-8;ooY=(H-bh)/2;
+    setOo(1);var r=stage.getBoundingClientRect();setAy(r.left+W/2+8,r.top+ooY);
+  }
+  init();
+  addEventListener('resize',function(){if(!full){init();}});
+
+  var lines=['Sorry na  po','lohhh sge na 😿','Sige na, plssss','Baby sorry naaa ','Wag ka nang magalit baby','plsssss','Bati na tayo, plsssss','sge na gandaa 😼','baby gandaaa','My baby girl na super bait','my yummmy kivey sorry naa','Miss na kita, baby 😿','sge na baby','Ayaw mo talaga? 😾','Click mo na yung Oo 😻','Oo na lang ang pwede 😼'];
+  var sad=['😿','😿','🙀','😿','😭','😾','😿','🙀'];
+
+  // Ayoko dodges and Oo grows until it is the only thing clickable
+  function run(ev){
+    if(ev&&ev.cancelable)ev.preventDefault();
+    if(Date.now()-lastRun<250)return;
+    tries++;lastRun=Date.now();
+    sMax=Math.max(innerWidth/bw,innerHeight/bh)*3.2;
+    curS+=curS<5?0.5:5;
+    if(curS>=sMax){curS=sMax;full=true;}
+    var s=curS;
+    setOo(s);
+    if(!full){
+      var sr=stage.getBoundingClientRect(),cx=sr.left+ooX+bw/2,cy=sr.top+ooY+bh/2,hw=bw*s/2+bw/2+12,hh=bh*s/2+bh/2+12,x,y,ok=false;
+      for(var t=0;t<40&&!ok;t++){
+        x=12+Math.random()*(innerWidth-bw-24);y=12+Math.random()*(innerHeight-bh-24);
+        ok=Math.abs(x+bw/2-cx)>hw||Math.abs(y+bh/2-cy)>hh;
+      }
+      if(ok){setAy(x,y);}else{full=true;ay.style.visibility='hidden';}
+    }
+    var m=full?lines.length-1:(tries-1)%(lines.length-1);
+    msg.textContent=lines[m];
+    face.textContent=full?'😽':sad[(tries-1)%sad.length];
+  }
+  ['pointerenter','pointerdown','click','touchstart'].forEach(function(t){ay.addEventListener(t,run,{passive:false})});
+  document.addEventListener('pointermove',function(e){
+    if(full)return;
+    var r=ay.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);
+    if(Math.hypot(dx,dy)<60&&Date.now()-lastRun>700)run();
+  });
+
+  // every 3rd press on Ayoko shows a little plea
+  var presses=0,lastPress=0,plead=$('plead'),pleadtxt=$('pleadtxt'),pleadok=$('pleadok');
+  var pleas=['Pls baby, sorry na po 😿 love love 💗','sorry na po talaga baby 🙀 love love, bati na tayo please 🐾💗'];
+  function press(){
+    var now=Date.now();if(now-lastPress<400)return;lastPress=now;
+    presses++;
+    if(presses%3===0){
+      pleadtxt.textContent=pleas[(presses/3-1)%pleas.length];
+      plead.classList.add('show');pleadok.focus();
+    }
+  }
+  ['pointerdown','click'].forEach(function(t){ay.addEventListener(t,press)});
+  function closePlead(){plead.classList.remove('show')}
+  pleadok.addEventListener('click',closePlead);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closePlead()});
+
+  // Oo!
+  oo.addEventListener('click',function(){
+    card.classList.add('done');
+    face.textContent='😻';face.classList.add('pop');
+    if(reduce)return;
+    var em2=['😻','🐾','💗','🐱','💖','🐟','😽'];
+    for(var i=0;i<45;i++){
+      var h=document.createElement('div');h.className='heart';
+      h.textContent=em2[i%em2.length];
+      h.style.left=Math.random()*100+'vw';
+      h.style.animationDuration=(3+Math.random()*3)+'s';
+      h.style.animationDelay=(Math.random()*1.2)+'s';
+      document.body.appendChild(h);
+      setTimeout((function(x){return function(){x.remove()}})(h),8000);
+    }
+  });
+})();
+</script>
+</body>
+</html>
